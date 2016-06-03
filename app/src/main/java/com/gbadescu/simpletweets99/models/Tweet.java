@@ -1,62 +1,86 @@
 package com.gbadescu.simpletweets99.models;
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-@Table(name = "Tweets")
-public class Tweet extends Model {
+import io.realm.RealmObject;
+
+
+
+public class Tweet extends RealmObject {
     // Define database columns and associated fields
-    @Column(name = "userId")
-    String userId;
-    @Column(name = "userHandle")
-    String userHandle;
-    @Column(name = "timestamp")
-    String timestamp;
-    @Column(name = "body")
-    String body;
+
+    User user;
+
+    String created_at;
+
+    String text;
 
     // Make sure to always define this constructor with no arguments
     public Tweet() {
         super();
     }
 
+    public User getUser() {
+        return user;
+    }
 
-    // Add a constructor that creates an object from the JSON response
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public Tweet(JSONObject object){
         super();
 
         try {
-            this.userId = object.getJSONObject("user").getString("id");
-            this.userHandle = object.getJSONObject("user").getString("name");
-            this.timestamp = object.getString("created_at");
-            this.body = object.getString("text");
+            User user = new User();
+            this.setUser(user);
+            this.getUser().setId_str(object.getJSONObject("user").getString("id"));
+            this.getUser().setName(object.getJSONObject("user").getString("name"));
+            this.setCreated_at(object.getString("created_at"));
+            this.setText(object.getString("text"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     public static ArrayList<Tweet> fromJson(JSONArray jsonArray) {
-        ArrayList<Tweet> tweets = new ArrayList<Tweet>(jsonArray.length());
+        final ArrayList<Tweet> tweets = new ArrayList<Tweet>(jsonArray.length());
 
         for (int i=0; i < jsonArray.length(); i++) {
-            JSONObject tweetJson = null;
+
             try {
-                tweetJson = jsonArray.getJSONObject(i);
+                final JSONObject tweetJson = jsonArray.getJSONObject(i);
+
+                final Tweet tweet = new Tweet(tweetJson);
+
+                tweets.add(tweet);
+
             } catch (Exception e) {
                 e.printStackTrace();
                 continue;
             }
 
-            Tweet tweet = new Tweet(tweetJson);
-            tweet.save();
-            tweets.add(tweet);
+
         }
 
         return tweets;

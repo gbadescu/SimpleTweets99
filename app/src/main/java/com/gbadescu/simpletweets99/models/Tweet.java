@@ -1,4 +1,4 @@
-package com.gbadescu.simpletweets99.restclienttemplate.models;
+package com.gbadescu.simpletweets99.models;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
@@ -33,10 +33,10 @@ public class Tweet extends Model {
         super();
 
         try {
-            this.userId = object.getString("user_id");
-            this.userHandle = object.getString("user_username");
-            this.timestamp = object.getString("timestamp");
-            this.body = object.getString("body");
+            this.userId = object.getJSONObject("user").getString("id");
+            this.userHandle = object.getJSONObject("user").getString("name");
+            this.timestamp = object.getString("created_at");
+            this.body = object.getString("text");
         } catch (JSONException e) {
             e.printStackTrace();
         }

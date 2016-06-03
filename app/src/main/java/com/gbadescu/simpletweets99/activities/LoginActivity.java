@@ -1,4 +1,4 @@
-package com.gbadescu.simpletweets99.restclienttemplate;
+package com.gbadescu.simpletweets99.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.View;
 
 import com.codepath.oauth.OAuthLoginActionBarActivity;
+import com.gbadescu.simpletweets99.net.RestClient;
 
 public class LoginActivity extends OAuthLoginActionBarActivity<RestClient> {
 

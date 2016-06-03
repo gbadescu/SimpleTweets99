@@ -1,4 +1,4 @@
-package com.gbadescu.simpletweets99.restclienttemplate;
+package com.gbadescu.simpletweets99.net;
 
 import android.content.Context;
 
@@ -23,7 +23,7 @@ import org.scribe.builder.api.TwitterApi;
  */
 public class RestClient extends OAuthBaseClient {
 	public static final Class<? extends Api> REST_API_CLASS = TwitterApi.class;
-	public static final String REST_URL = "http://api.twitter.com/1.1";
+	public static final String REST_URL = "https://api.twitter.com/1.1";
 	public static final String REST_CONSUMER_KEY = "UnyOodb0MiG9bKmCRBQ83IKmB";
 	public static final String REST_CONSUMER_SECRET = "fpvQpqvqd1dDhHLNXbGJsY1mq4VcJ1UwD25Ii4S9H2HCAiu3Qx";
 	public static final String REST_CALLBACK_URL = "oauth://codepathtweets";

@@ -1,4 +1,4 @@
-package com.gbadescu.simpletweets99.restclienttemplate;
+package com.gbadescu.simpletweets99.net;
 
 import android.content.Context;
 

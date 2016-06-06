@@ -5,6 +5,7 @@ import android.text.format.DateUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +15,7 @@ import java.util.Locale;
 import io.realm.RealmObject;
 
 
-
+@Parcel
 public class Tweet extends RealmObject {
     // Define database columns and associated fields
 
@@ -79,6 +80,8 @@ public class Tweet extends RealmObject {
             this.setUser(user);
             this.getUser().setId_str(object.getJSONObject("user").getString("id"));
             this.getUser().setName(object.getJSONObject("user").getString("name"));
+            this.getUser().setScreen_name(object.getJSONObject("user").getString("screen_name"));
+            this.getUser().setProfile_image_url(object.getJSONObject("user").getString("profile_image_url"));
             this.setCreated_at(object.getString("created_at"));
             this.setText(object.getString("text"));
         } catch (JSONException e) {

@@ -1,13 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="100dp">
 
-    <TextView
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/ivProfileImg"
+         />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:paddingRight="10dp"
+            android:textStyle="bold"
+            android:text="name"
+
+            android:id="@+id/tvName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="username"
+            android:layout_toRightOf="@id/tvName"
+            android:id="@+id/tvUsername" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Relative Date"
+            android:id="@+id/tvRelativeDate"
+            android:layout_toRightOf="@id/tvUserName"
+            android:layout_alignParentRight="true"
+             />
+
+
+
+    <com.gbadescu.simpletweets99.utilities.LinkifiedTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@id/tvRelativeDate"
+        android:textColor="@android:color/black"
         android:text="Tweet Text"
-        android:id="@+id/tvTweetText"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/tvTweetText" />
+    </RelativeLayout>
+
+
+
 </LinearLayout>

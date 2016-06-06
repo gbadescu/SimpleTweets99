@@ -52,6 +52,7 @@
     <com.gbadescu.simpletweets99.utilities.LinkifiedTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:linksClickable="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_below="@id/tvRelativeDate"
         android:textColor="@android:color/black"

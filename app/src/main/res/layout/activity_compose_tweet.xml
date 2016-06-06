@@ -47,6 +47,8 @@
         android:id="@+id/tvTweetText"
         android:text="What&apos;s happening?" />
 
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,4 +57,14 @@
         android:id="@+id/bTweet"
         android:layout_below="@id/tvTweetText"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/bTweet"
+        android:layout_below="@id/tvTweetText"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="140"
+        android:id="@+id/charsLeft" />
+
 </RelativeLayout>

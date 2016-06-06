@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -28,6 +30,10 @@ public class ComposeTweetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose_tweet);
+
+        TextView tweetBody = (TextView) findViewById(R.id.tvTweetText);
+
+        tweetBody.addTextChangedListener(mTextEditorWatcher);
 
         RestClient client = SimpleTweets99Application.getRestClient();
 
@@ -74,6 +80,8 @@ public class ComposeTweetActivity extends AppCompatActivity {
 
         TextView tweetBody = (TextView) findViewById(R.id.tvTweetText);
 
+        tweetBody.addTextChangedListener(mTextEditorWatcher);
+
         RestClient client = SimpleTweets99Application.getRestClient();
         client.postTweet(tweetBody.getText().toString(), new JsonHttpResponseHandler() {
 
@@ -99,5 +107,23 @@ public class ComposeTweetActivity extends AppCompatActivity {
         toast.setText(msg);
         toast.show();
     }
+
+
+
+
+
+    private final TextWatcher mTextEditorWatcher = new TextWatcher() {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //This sets a textview to the current length
+            TextView mTextView = (TextView) findViewById(R.id.charsLeft);
+            mTextView.setText(String.valueOf(140 - s.length()));
+        }
+
+        public void afterTextChanged(Editable s) {
+        }
+    };
 
 }

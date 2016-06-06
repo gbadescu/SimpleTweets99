@@ -170,6 +170,9 @@ public class TimelineActivity extends AppCompatActivity implements NetworkStateR
                     }
 
                     timelineAdapter.notifyDataSetChanged();
+
+                    swipeContainer.setRefreshing(false);
+
                 }
 
                 @Override
@@ -196,6 +199,9 @@ public class TimelineActivity extends AppCompatActivity implements NetworkStateR
             }
 
             timelineAdapter.notifyDataSetChanged();
+
+            swipeContainer.setRefreshing(false);
+
 
         }
     }

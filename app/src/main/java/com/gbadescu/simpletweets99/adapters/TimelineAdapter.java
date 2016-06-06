@@ -2,6 +2,7 @@ package com.gbadescu.simpletweets99.adapters;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.gbadescu.simpletweets99.models.Tweet;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 /**
@@ -58,7 +60,7 @@ public class TimelineAdapter extends ArrayAdapter<Tweet> {
 
         viewHolder.tvName.setText(tweet.getUser().getName().toString());
         viewHolder.tvUsername.setText("@"+tweet.getUser().getScreen_name().toString());
-        viewHolder.tvTweetText.setText(tweet.getText());
+        viewHolder.tvTweetText.setText(Html.fromHtml(tweet.getText()), TextView.BufferType.SPANNABLE);
         viewHolder.tvRelativeDate.setText(tweet.getRelativeTimeAgo(tweet.getCreated_at()));
 
         Picasso.with(getContext().getApplicationContext())

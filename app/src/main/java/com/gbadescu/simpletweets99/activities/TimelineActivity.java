@@ -191,8 +191,6 @@ public class TimelineActivity extends AppCompatActivity implements NetworkStateR
 
                 final Tweet tweet = tweets.get(i);
 
-
-
                 timelineAdapter.add(tweet);
 
             }

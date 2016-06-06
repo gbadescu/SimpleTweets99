@@ -9,20 +9,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.gbadescu.simpletweets99.activities.ComposeTweetActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:id="@+id/topBar"
-        android:layout_height="100dp">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="100dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/imageView"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Name"
                 android:id="@+id/tvName" />
@@ -30,34 +27,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvName"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="username"
                 android:id="@+id/tvUserName" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView" />
-        </LinearLayout>
-    </LinearLayout>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/imageView"
+        android:textSize="9sp"
         android:layout_alignParentRight="true"
         android:layout_alignParentLeft="true"
-        android:lines="20"
-        android:ems="10"
+        android:background="@drawable/shapes"
+        android:lines="4"
         android:id="@+id/tvTweetText"
-        android:layout_below="@id/topBar"
         android:text="What&apos;s happening?" />
 
     <Button
@@ -66,5 +53,6 @@
         android:text="Tweet"
         android:onClick="onTweet"
         android:id="@+id/bTweet"
-        android:layout_below="@id/tvTweetText" />
+        android:layout_below="@id/tvTweetText"
+        />
 </RelativeLayout>

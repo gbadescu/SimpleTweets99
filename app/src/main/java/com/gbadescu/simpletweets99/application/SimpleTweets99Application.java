@@ -22,7 +22,7 @@ public class SimpleTweets99Application extends Application {
         super.onCreate();
 
         RealmConfiguration realmConfig = new RealmConfiguration.Builder(this).build();
-        Realm.deleteRealm(realmConfig); // Delete Realm between app restarts.
+        //Realm.deleteRealm(realmConfig); // Delete Realm between app restarts.
         Realm.setDefaultConfiguration(realmConfig);
 
         SimpleTweets99Application.context = this;

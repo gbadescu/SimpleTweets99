@@ -9,11 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.gbadescu.simpletweets99.activities.R;
 import com.gbadescu.simpletweets99.models.Tweet;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 /**
  * Created by gabrielbadescu on 6/2/16.
@@ -60,9 +61,9 @@ public class TimelineAdapter extends ArrayAdapter<Tweet> {
         viewHolder.tvTweetText.setText(tweet.getText());
         viewHolder.tvRelativeDate.setText(tweet.getRelativeTimeAgo(tweet.getCreated_at()));
 
-        Glide.with(getContext().getApplicationContext())
+        Picasso.with(getContext().getApplicationContext())
                 .load(Uri.parse(tweet.getUser().getProfile_image_url()))
-                .into(viewHolder.ivProfileImg);
+                .resize(150,150).transform(new RoundedCornersTransformation(10, 10)).into(viewHolder.ivProfileImg);
 
 
         return convertView;

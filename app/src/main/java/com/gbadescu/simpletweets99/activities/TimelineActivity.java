@@ -171,7 +171,7 @@ public class TimelineActivity extends AppCompatActivity implements NetworkStateR
 
                     timelineAdapter.notifyDataSetChanged();
 
-                    swipeContainer.setRefreshing(false);
+
 
                 }
 
@@ -180,6 +180,8 @@ public class TimelineActivity extends AppCompatActivity implements NetworkStateR
                     super.onFailure(statusCode, headers, responseString, throwable);
                 }
             });
+
+
         }
         else
         {
@@ -200,10 +202,12 @@ public class TimelineActivity extends AppCompatActivity implements NetworkStateR
 
             timelineAdapter.notifyDataSetChanged();
 
-            swipeContainer.setRefreshing(false);
+
 
 
         }
+
+        swipeContainer.setRefreshing(false);
     }
 
     public void networkAvailable() {

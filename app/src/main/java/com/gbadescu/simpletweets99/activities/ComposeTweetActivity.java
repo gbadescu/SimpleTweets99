@@ -1,6 +1,7 @@
 package com.gbadescu.simpletweets99.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -87,7 +88,9 @@ public class ComposeTweetActivity extends AppCompatActivity {
 
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject jsonObject) {
                 Log.d("DEBUG", "posted successfully");
-             finish();
+                Intent refresh = new Intent(getApplicationContext(), TimelineActivity.class);
+                startActivity(refresh);
+                finish();
             }
 
             @Override

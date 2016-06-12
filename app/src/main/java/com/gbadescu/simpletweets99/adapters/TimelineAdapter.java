@@ -1,6 +1,7 @@
 package com.gbadescu.simpletweets99.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gbadescu.simpletweets99.activities.ProfileActivity;
 import com.gbadescu.simpletweets99.activities.R;
 import com.gbadescu.simpletweets99.models.Tweet;
 import com.squareup.picasso.Picasso;
@@ -24,6 +26,7 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 public class TimelineAdapter extends ArrayAdapter<Tweet> {
 
     ArrayList<Tweet> tweetList;
+    Context con;
 
     private static class ViewHolder {
         public ImageView ivProfileImg;
@@ -62,6 +65,17 @@ public class TimelineAdapter extends ArrayAdapter<Tweet> {
         viewHolder.tvUsername.setText("@"+tweet.getUser().getScreen_name().toString());
         viewHolder.tvTweetText.setText(Html.fromHtml(tweet.getText()), TextView.BufferType.SPANNABLE);
         viewHolder.tvRelativeDate.setText(tweet.getRelativeTimeAgo(tweet.getCreated_at()));
+        viewHolder.ivProfileImg.setTag(tweet.getUser().getScreen_name());
+
+        viewHolder.ivProfileImg.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent profileIntent = new Intent(con, ProfileActivity.class);
+                        con.startActivity(profileIntent);
+                    }
+                }
+        );
 
         Picasso.with(getContext().getApplicationContext())
                 .load(Uri.parse(tweet.getUser().getProfile_image_url()))
@@ -81,6 +95,8 @@ public class TimelineAdapter extends ArrayAdapter<Tweet> {
         super(context, R.layout.item_tweet,tweets);
 
         tweetList = tweets;
+
+        con = context;
 
 
     }

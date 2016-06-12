@@ -17,6 +17,10 @@ public class SimpleTweets99Application extends Application {
 
     private static Context context;
 
+    public static Context getContext() {
+        return context;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -37,4 +41,5 @@ public class SimpleTweets99Application extends Application {
     public static RestClient getRestClient() {
         return (RestClient) RestClient.getInstance(RestClient.class, SimpleTweets99Application.context);
     }
+
 }

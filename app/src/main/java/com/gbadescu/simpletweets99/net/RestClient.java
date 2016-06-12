@@ -42,6 +42,13 @@ public class RestClient extends OAuthBaseClient {
 		client.get(apiUrl, params, handler);
 	}
 
+	public void getMentionsTimeline(int page, AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("statuses/mentions_timeline.json");
+		RequestParams params = new RequestParams();
+		params.put("page", String.valueOf(page));
+		getClient().get(apiUrl, params, handler);
+	}
+
 	// RestClient.java
 	public void getHomeTimeline(int page, AsyncHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/home_timeline.json");
@@ -56,6 +63,14 @@ public class RestClient extends OAuthBaseClient {
 		RequestParams params = new RequestParams();
 		getClient().get(apiUrl, params, handler);
 	}
+
+	public void getProfile(String screenName, AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("users/show.json");
+		RequestParams params = new RequestParams();
+		params.put("screen_name",screenName);
+		getClient().get(apiUrl, params, handler);
+	}
+
 
 	// RestClient.java
 	public void postTweet(String body, AsyncHttpResponseHandler handler) {

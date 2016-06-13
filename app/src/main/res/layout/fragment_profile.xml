@@ -1,13 +1,74 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gbadescu.simpletweets99.fragments.Profile">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.gbadescu.simpletweets99.activities.ProfileActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView" />
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imageView"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="9dp"
+        android:text="Name"
+        android:id="@+id/tvName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tvName"
+        android:textSize="9dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="username"
+        android:id="@+id/tvUserName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imageView"
+        android:layout_below="@id/tvName"
+        android:textSize="9dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="tagline"
+        android:id="@+id/tvTagLine" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_below="@id/tvTagLine"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="9dp"
+        android:paddingRight="30dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="followers"
+
+        android:id="@+id/tvFollowers" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="9dp"
+
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="following"
+        android:gravity="right"
+        android:id="@+id/tvFollowing" />
+
+    </LinearLayout>
+
+</RelativeLayout>

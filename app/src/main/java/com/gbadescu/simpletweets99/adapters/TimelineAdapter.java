@@ -72,6 +72,9 @@ public class TimelineAdapter extends ArrayAdapter<Tweet> {
                     @Override
                     public void onClick(View v) {
                         Intent profileIntent = new Intent(con, ProfileActivity.class);
+
+                        profileIntent.putExtra("screen_name", (String) v.getTag());
+
                         con.startActivity(profileIntent);
                     }
                 }

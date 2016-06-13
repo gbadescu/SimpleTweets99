@@ -2,12 +2,26 @@ package com.gbadescu.simpletweets99.fragments;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.gbadescu.simpletweets99.activities.R;
+import com.gbadescu.simpletweets99.application.SimpleTweets99Application;
+import com.gbadescu.simpletweets99.net.RestClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 
 /**
@@ -50,6 +64,57 @@ public class Profile extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        final View v = view;
+
+        RestClient client = SimpleTweets99Application.getRestClient();
+
+        client.getProfile(this.mParam1, new JsonHttpResponseHandler() {
+
+            public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject jsonObject) {
+                Log.d("DEBUG", "posted successfully");
+
+
+                try {
+                    TextView nameView = (TextView) v.findViewById(R.id.tvName);
+                    nameView.setText(jsonObject.getString("name"));
+
+                    TextView usernameView = (TextView) v.findViewById(R.id.tvUserName);
+                    usernameView.setText("@"+jsonObject.getString("screen_name"));
+
+                    TextView followersView = (TextView) v.findViewById(R.id.tvFollowers);
+                    followersView.setText(jsonObject.getString("followers_count") + " Followers");
+
+                    TextView taglineView = (TextView) v.findViewById(R.id.tvTagLine);
+                    taglineView.setText(jsonObject.getString("description"));
+
+                    TextView followingView = (TextView) v.findViewById(R.id.tvFollowing);
+                    followingView.setText(jsonObject.getString("friends_count") + " Following");
+
+                    ImageView profileImageView = (ImageView) v.findViewById(R.id.imageView);
+                    Picasso.with(SimpleTweets99Application.getContext())
+                            .load(Uri.parse(jsonObject.getString("profile_image_url")))
+                            .resize(150,150).transform(new RoundedCornersTransformation(10, 10)).into(profileImageView);
+
+                }
+                catch(JSONException e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject jsonObject) {
+                Log.d("DEBUG", "failed");
+            }
+
+        });
     }
 
     @Override

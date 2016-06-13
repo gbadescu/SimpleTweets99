@@ -71,6 +71,13 @@ public class RestClient extends OAuthBaseClient {
 		getClient().get(apiUrl, params, handler);
 	}
 
+	public void getUserTimeline(String screenName, int count, AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("statuses/user_timeline.json");
+		RequestParams params = new RequestParams();
+		params.put("screen_name",screenName);
+		params.put("count",count);
+		getClient().get(apiUrl, params, handler);
+	}
 
 	// RestClient.java
 	public void postTweet(String body, AsyncHttpResponseHandler handler) {

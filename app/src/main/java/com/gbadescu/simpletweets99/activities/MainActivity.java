@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +23,13 @@ import com.gbadescu.simpletweets99.adapters.SmartFragmentStatePagerAdapter;
 import com.gbadescu.simpletweets99.application.SimpleTweets99Application;
 import com.gbadescu.simpletweets99.fragments.Mention;
 import com.gbadescu.simpletweets99.fragments.TimeLine;
+import com.gbadescu.simpletweets99.net.RestClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -140,8 +148,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_profile) {
-            Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
-            MainActivity.this.startActivity(profileIntent);
+            final Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
+
+            RestClient client = SimpleTweets99Application.getRestClient();
+
+            client.getVerifyCredentials(new JsonHttpResponseHandler() {
+
+                public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject jsonObject) {
+                    Log.d("DEBUG", "posted successfully");
+
+
+                    try {
+
+                        profileIntent.putExtra("screen_name",jsonObject.getString("screen_name"));
+
+                        MainActivity.this.startActivity(profileIntent);
+
+                    }
+                    catch(JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject jsonObject) {
+                    Log.d("DEBUG", "failed");
+                }
+
+            });
+
+
             return false;
         }
 

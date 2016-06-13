@@ -9,4 +9,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.gbadescu.simpletweets99.activities.ProfileActivity">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/flContainer"></FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/flContainer"
+        android:id="@+id/userTimelineContainer"></FrameLayout>
+
 </RelativeLayout>

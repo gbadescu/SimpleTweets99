@@ -88,7 +88,7 @@ public class ComposeTweetActivity extends AppCompatActivity {
 
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject jsonObject) {
                 Log.d("DEBUG", "posted successfully");
-                Intent refresh = new Intent(getApplicationContext(), TimelineActivity.class);
+                Intent refresh = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(refresh);
                 finish();
             }

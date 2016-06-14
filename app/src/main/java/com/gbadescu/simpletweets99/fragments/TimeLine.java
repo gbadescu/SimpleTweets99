@@ -98,7 +98,7 @@ public class TimeLine extends Fragment {
 
         tweets = new ArrayList<Tweet>();
 
-        timelineAdapter = new TimelineAdapter(this.getContext(),tweets);
+        timelineAdapter = new TimelineAdapter(getActivity(),tweets);
 
     }
 

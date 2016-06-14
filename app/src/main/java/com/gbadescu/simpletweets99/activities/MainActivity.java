@@ -63,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("Reached:", "onActivityResult: ");
+    }
+
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
     }
